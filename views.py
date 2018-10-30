@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from .forms import ContactForm
+from django.http import HttpResponseRedirect
+from .models import Name
 
 # Create your views here.
 def index(request):
@@ -13,7 +16,30 @@ def careers(request):
 
 
 def contactus(request):
-    return render(request, 'stax_official/contactus.html', {})
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+            entry = Name(
+                name = form.cleaned_data["name"],
+                company = form.cleaned_data["company"],
+                phone = form.cleaned_data["phone"],
+                job_title = form.cleaned_data["job_title"],
+                description = form.cleaned_data["description"],
+            )
+            entry.save()
+            return HttpResponseRedirect('/contactus?success=1')
+
+    else:
+        form = ContactForm()
+
+    try:
+        success = request.GET['success'][0]
+        success = int(success)
+    except:
+        success = False
+    
+    return render(request, 'stax_official/contactus.html', {'form': form, 'success': success})
 
 
 def digitalstrategy(request):
