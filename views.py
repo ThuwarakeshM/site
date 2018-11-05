@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import ContactForm
 from django.http import HttpResponseRedirect
-from .models import Name
+from .models import Query
 
 # Create your views here.
 def index(request):
@@ -20,7 +20,7 @@ def contactus(request):
         form = ContactForm(request.POST)
 
         if form.is_valid():
-            entry = Name(
+            entry = Query(
                 name = form.cleaned_data["name"],
                 company = form.cleaned_data["company"],
                 phone = form.cleaned_data["phone"],
