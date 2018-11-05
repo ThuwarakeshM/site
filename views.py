@@ -70,3 +70,9 @@ def projectimplementation(request):
 
 def services(request):
     return render(request, 'stax_official/services.html', {})
+
+def blogs(request):
+    return render(request, 'stax_official/blog.html', {})
+
+def blog(request, pk):
+    return render(request, 'stax_official/blogpost.html', {})
