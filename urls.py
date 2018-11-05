@@ -14,6 +14,6 @@ urlpatterns = [
     path('ourclients', views.ourclients, name="ourclients"),
     path('projectimplementation', views.projectimplementation, name="projectimplementation"),
     path('services', views.services, name="services"),
-    path('blog', views.blogs, name="blogs"),
-    path('blog/<int:pk>', views.blog, name="blog"),
+    path('thoughtleadership', views.blogs, name="blogs"),
+    path('thoughtleadership/<int:pk>', views.blog, name="blog"),
 ]
